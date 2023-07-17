@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Sudoku.MVVM.Views.GamePage"
+             Title="GamePage"
+             Shell.NavBarIsVisible="False">
+
+    <VerticalStackLayout>
+        <Grid RowDefinitions="*,*,*" ColumnDefinitions="*,*,*" BackgroundColor="AliceBlue" Margin="10">
+            
+            <Grid RowDefinitions="*,*,*" ColumnDefinitions="*,*,*">
+                
+                <Label Text="0" TextColor="Black" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="1" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="1" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="1" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="2" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="2" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="2" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
+            </Grid>
+            <Grid RowDefinitions="*,*,*" ColumnDefinitions="*,*,*" Grid.Column="1">
+
+                <Label Text="0" TextColor="Black" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="1" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="1" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="1" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="2" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="2" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="2" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
+            </Grid>
+            <Grid RowDefinitions="*,*,*" ColumnDefinitions="*,*,*" Grid.Column="2">
+
+                <Label Text="0" TextColor="Black" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="1" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="1" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="1" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="2" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="2" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="2" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
+            </Grid>
+
+            <Grid RowDefinitions="*,*,*" ColumnDefinitions="*,*,*" Grid.Row="1">
+
+                <Label Text="0" TextColor="Black" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="1" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="1" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="1" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="2" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="2" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="2" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
+            </Grid>
+            <Grid RowDefinitions="*,*,*" ColumnDefinitions="*,*,*" Grid.Row="1" Grid.Column="1">
+
+                <Label Text="0" TextColor="Black" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="1" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="1" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="1" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="2" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="2" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="2" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
+            </Grid>
+            <Grid RowDefinitions="*,*,*" ColumnDefinitions="*,*,*" Grid.Row="1" Grid.Column="2">
+
+                <Label Text="0" TextColor="Black" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="1" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="1" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="1" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="2" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="2" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="2" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
+            </Grid>
+
+            <Grid RowDefinitions="*,*,*" ColumnDefinitions="*,*,*" Grid.Row="2">
+
+                <Label Text="0" TextColor="Black" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="1" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="1" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="1" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="2" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="2" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="2" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
+            </Grid>
+            <Grid RowDefinitions="*,*,*" ColumnDefinitions="*,*,*" Grid.Row="2" Grid.Column="1">
+
+                <Label Text="0" TextColor="Black" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="1" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="1" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="1" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="2" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="2" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="2" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
+            </Grid>
+            <Grid RowDefinitions="*,*,*" ColumnDefinitions="*,*,*" Grid.Row="2" Grid.Column="2">
+
+                <Label Text="0" TextColor="Black" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="1" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="1" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="1" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="2" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="2" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
+                <Label Text="0" TextColor="Black" Grid.Row="2" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
+            </Grid>
+        </Grid>
+
+        <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="CenterAndExpand">
+            <Label Text="1" FontSize="35" Margin="5"/>
+            <Label Text="2" FontSize="35" Margin="5"/>
+            <Label Text="3" FontSize="35" Margin="5"/>
+            <Label Text="4" FontSize="35" Margin="5"/>
+            <Label Text="5" FontSize="35" Margin="5"/>
+            <Label Text="6" FontSize="35" Margin="5"/>
+            <Label Text="7" FontSize="35" Margin="5"/>
+            <Label Text="8" FontSize="35" Margin="5"/>
+            <Label Text="9" FontSize="35" Margin="5"/>
+        </StackLayout>
+
+        <Button Text="Back"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                WidthRequest="100"
+                Command="{Binding GoToMainCommand}"/>
+
+    </VerticalStackLayout>
+    
+</ContentPage>
