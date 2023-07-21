@@ -5,120 +5,29 @@
              Title="GamePage"
              Shell.NavBarIsVisible="False">
 
-    <VerticalStackLayout>
-        <Grid RowDefinitions="*,*,*" ColumnDefinitions="*,*,*" BackgroundColor="AliceBlue" Margin="10">
-            
-            <Grid RowDefinitions="*,*,*" ColumnDefinitions="*,*,*">
-                
-                <Label Text="0" TextColor="Black" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="1" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="1" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="1" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="2" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="2" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="2" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
-            </Grid>
-            <Grid RowDefinitions="*,*,*" ColumnDefinitions="*,*,*" Grid.Column="1">
+    <VerticalStackLayout Margin="5,15" Spacing="10">
+        <Label Text="Mistakes: 0/3"
+               HorizontalOptions="Center"/>
 
-                <Label Text="0" TextColor="Black" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="1" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="1" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="1" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="2" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="2" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="2" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
-            </Grid>
-            <Grid RowDefinitions="*,*,*" ColumnDefinitions="*,*,*" Grid.Column="2">
+        <CollectionView ItemsSource="{Binding SudokuPattern}" Margin="5">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" Span="9"/>
+            </CollectionView.ItemsLayout>
 
-                <Label Text="0" TextColor="Black" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="1" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="1" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="1" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="2" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="2" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="2" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
-            </Grid>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border WidthRequest="40" HeightRequest="40" BackgroundColor="AliceBlue">
+                        <Label Text="{Binding}"
+                               TextColor="Black"
+                               FontSize="Large"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"/>
 
-            <Grid RowDefinitions="*,*,*" ColumnDefinitions="*,*,*" Grid.Row="1">
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
 
-                <Label Text="0" TextColor="Black" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="1" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="1" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="1" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="2" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="2" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="2" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
-            </Grid>
-            <Grid RowDefinitions="*,*,*" ColumnDefinitions="*,*,*" Grid.Row="1" Grid.Column="1">
-
-                <Label Text="0" TextColor="Black" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="1" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="1" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="1" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="2" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="2" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="2" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
-            </Grid>
-            <Grid RowDefinitions="*,*,*" ColumnDefinitions="*,*,*" Grid.Row="1" Grid.Column="2">
-
-                <Label Text="0" TextColor="Black" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="1" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="1" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="1" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="2" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="2" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="2" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
-            </Grid>
-
-            <Grid RowDefinitions="*,*,*" ColumnDefinitions="*,*,*" Grid.Row="2">
-
-                <Label Text="0" TextColor="Black" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="1" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="1" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="1" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="2" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="2" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="2" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
-            </Grid>
-            <Grid RowDefinitions="*,*,*" ColumnDefinitions="*,*,*" Grid.Row="2" Grid.Column="1">
-
-                <Label Text="0" TextColor="Black" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="1" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="1" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="1" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="2" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="2" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="2" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
-            </Grid>
-            <Grid RowDefinitions="*,*,*" ColumnDefinitions="*,*,*" Grid.Row="2" Grid.Column="2">
-
-                <Label Text="0" TextColor="Black" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="1" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="1" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="1" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="2" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="2" Grid.Column="1" FontSize="Large" HorizontalTextAlignment="Center"/>
-                <Label Text="0" TextColor="Black" Grid.Row="2" Grid.Column="2" FontSize="Large" HorizontalTextAlignment="Center"/>
-            </Grid>
-        </Grid>
+        </CollectionView>
 
         <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="CenterAndExpand">
             <Label Text="1" FontSize="35" Margin="5"/>
