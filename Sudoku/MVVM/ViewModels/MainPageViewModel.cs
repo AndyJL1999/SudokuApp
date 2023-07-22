@@ -13,6 +13,6 @@ public partial class MainPageViewModel
     [RelayCommand]
     private async Task GoToGame()
     {
-        await Shell.Current.GoToAsync(nameof(GamePage), true);
+        await Shell.Current.GoToAsync(nameof(GamePage));
     }
 }
