@@ -12,6 +12,8 @@ namespace Sudoku.MVVM.ViewModels
         [ObservableProperty]
         private ObservableCollection<SudokuCell> _sudokuPattern;
         [ObservableProperty]
+        private SudokuCell _chosenCell;
+        [ObservableProperty]
         private string _numberChoice;
 
         public GamePageViewModel()
@@ -29,22 +31,47 @@ namespace Sudoku.MVVM.ViewModels
         [RelayCommand]
         private void ModifyCell(SudokuCell cell)
         {
-            cell.CellColor = Colors.LimeGreen;
-            cell.IsInteractable = false;
+            if(ChosenCell != null && ChosenCell.IsInteractable == true)
+            { 
+                ChosenCell.CellColor = Colors.AliceBlue;
+            }
+
+            ChosenCell = cell;
+            cell.CellColor = Colors.Gray;
+        }
+
+        [RelayCommand]
+        private void CheckCell(char chosenNumber)
+        {
+            if(ChosenCell != null)
+            {
+                if (ChosenCell.CellNumber == chosenNumber.ToString())
+                {
+                    ChosenCell.CellColor = Colors.LimeGreen;
+                    ChosenCell.IsInteractable = false;
+                }
+                else
+                {
+                    ChosenCell.CellColor = Colors.Red;
+                }
+            }
         }
 
         private void SetBoard()
         {
             SudokuPattern = new ObservableCollection<SudokuCell>();
 
-            for(int i = 1; i <= 81; i++)
+            for(int i = 1; i <= 9; i++)
             {
-                SudokuPattern.Add(new SudokuCell
+                for(int j = 1; j <= 9; j++)
                 {
-                    CellColor = Colors.AliceBlue,
-                    IsInteractable = true,
-                    CellNumber = $"{i}"
-                });
+                    SudokuPattern.Add(new SudokuCell
+                    {
+                        CellColor = Colors.AliceBlue,
+                        IsInteractable = true,
+                        CellNumber = $"{j}"
+                    });
+                }
             }
         }
     }
