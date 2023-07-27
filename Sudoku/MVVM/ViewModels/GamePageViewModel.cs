@@ -15,11 +15,20 @@ namespace Sudoku.MVVM.ViewModels
         private SudokuCell _chosenCell;
         [ObservableProperty]
         private string _numberChoice;
+        [ObservableProperty]
+        private string _errorCounter;
+
+        private Random _rnd;
+        private int _errorNum;
 
         public GamePageViewModel()
         {
-            SetBoard();
+            _rnd = new Random();
+
+            ErrorCounter = "Mistakes: 0/3";
             NumberChoice = "123456789";
+
+            SetBoard();
         }
 
         [RelayCommand]
@@ -41,7 +50,7 @@ namespace Sudoku.MVVM.ViewModels
         }
 
         [RelayCommand]
-        private void CheckCell(char chosenNumber)
+        private async Task CheckCell(char chosenNumber)
         {
             if(ChosenCell != null)
             {
@@ -52,27 +61,51 @@ namespace Sudoku.MVVM.ViewModels
                 }
                 else
                 {
+                    _errorNum++;
+
                     ChosenCell.CellColor = Colors.Red;
+                    ErrorCounter = $"Mistakes: {_errorNum}/3";
+
+                    if (_errorNum == 3) //After 3 errors -> end game
+                    {
+                        var playAgain = await Shell.Current.DisplayAlert("Game Over", "Do you want to play again?", "Yes", "No");
+
+                        if(playAgain == true)
+                        {
+                            SetBoard();
+                            ErrorCounter = $"Mistakes: {_errorNum}/3";
+                        }
+                        else
+                        {
+                            await GoToMain();
+                        }
+                    }
                 }
             }
         }
 
         private void SetBoard()
         {
-            SudokuPattern = new ObservableCollection<SudokuCell>();
+            _errorNum = 0;
 
-            for(int i = 1; i <= 9; i++)
+            SudokuPattern = new ObservableCollection<SudokuCell>();
+            string viablePattern = "123456789";
+
+            for (int i = 0; i < 9; i++)
             {
-                for(int j = 1; j <= 9; j++)
+                viablePattern = new (viablePattern.OrderBy(x => _rnd.Next()).ToArray());
+
+                for(int j = 0; j < 9; j++)
                 {
                     SudokuPattern.Add(new SudokuCell
                     {
                         CellColor = Colors.AliceBlue,
                         IsInteractable = true,
-                        CellNumber = $"{j}"
+                        CellNumber = $"{viablePattern[j]}"
                     });
                 }
             }
         }
+
     }
 }

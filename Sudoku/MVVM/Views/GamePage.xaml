@@ -14,7 +14,7 @@
         <Line BackgroundColor="Blue" HeightRequest="5" Margin="5,0,5,440" />
 
         <VerticalStackLayout Margin="5,15" Spacing="10">
-            <Label Text="Mistakes: 0/3"
+            <Label Text="{Binding ErrorCounter}"
                FontAttributes="Bold"
                HorizontalOptions="Center"/>
 
