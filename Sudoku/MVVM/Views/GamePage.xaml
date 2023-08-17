@@ -14,9 +14,18 @@
         <Line BackgroundColor="Blue" HeightRequest="5" Margin="5,0,5,440" />
 
         <VerticalStackLayout Margin="5,15" Spacing="10">
-            <Label Text="{Binding ErrorCounter}"
-               FontAttributes="Bold"
-               HorizontalOptions="Center"/>
+
+            <Grid ColumnDefinitions="*,*,*">
+                <Label Text="{Binding ErrorCounter}"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       Grid.Column="1"/>
+                <Label Text="{Binding Clock}"
+                       Margin="10,0"
+                       HorizontalOptions="End"
+                       Grid.Column="2"/>
+            </Grid>
+            
 
             <CollectionView ItemsSource="{Binding SudokuPattern}" Margin="5">
                 <CollectionView.ItemsLayout>
@@ -28,15 +37,15 @@
                         <Border WidthRequest="40" HeightRequest="40" BackgroundColor="{Binding CellColor}" IsEnabled="{Binding IsInteractable}">
 
                             <Label Text="{Binding CellNumber}"
-                               TextColor="Black"
-                               FontSize="Large"
-                               HorizontalOptions="Center"
-                               VerticalOptions="Center"/>
+                                   TextColor="Black"
+                                   FontSize="Large"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
 
                             <Border.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding Path=ModifyCellCommand,
-                                                  Source={RelativeSource AncestorType={x:Type vm:GamePageViewModel}}}"
-                                                  CommandParameter="{Binding}"/>
+                                                      Source={RelativeSource AncestorType={x:Type vm:GamePageViewModel}}}"
+                                                      CommandParameter="{Binding}"/>
                             </Border.GestureRecognizers>
 
                         </Border>
@@ -46,22 +55,22 @@
             </CollectionView>
 
             <CollectionView ItemsSource="{Binding NumberChoice}"
-                        HorizontalOptions="CenterAndExpand">
+                            HorizontalOptions="CenterAndExpand">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Horizontal"
-                                   ItemSpacing="10"/>
+                                       ItemSpacing="10"/>
                 </CollectionView.ItemsLayout>
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Label Text="{Binding}"
-                           FontSize="35"
-                           Margin="5">
+                               FontSize="35"
+                               Margin="5">
 
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding Path=CheckCellCommand,
-                                                  Source={RelativeSource AncestorType={x:Type vm:GamePageViewModel}}}"
-                                                  CommandParameter="{Binding}"/>
+                                                      Source={RelativeSource AncestorType={x:Type vm:GamePageViewModel}}}"
+                                                      CommandParameter="{Binding}"/>
                             </Label.GestureRecognizers>
                         </Label>
                     </DataTemplate>
@@ -69,10 +78,10 @@
             </CollectionView>
 
             <Button Text="Back"
-                VerticalOptions="Center"
-                HorizontalOptions="Center"
-                WidthRequest="100"
-                Command="{Binding GoToMainCommand}"/>
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    WidthRequest="100"
+                    Command="{Binding GoToMainCommand}"/>
 
         </VerticalStackLayout>
     </Grid>
