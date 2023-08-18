@@ -38,7 +38,6 @@ namespace Sudoku.MVVM.ViewModels
             SetBoard();
 
             _timer.Elapsed += (sender, e) => HandleTimer();
-            _timer.Start();
         }
 
         [RelayCommand]
@@ -76,7 +75,7 @@ namespace Sudoku.MVVM.ViewModels
                     ChosenCell.CellColor = Colors.Red;
                     ErrorCounter = $"Mistakes: {_errorNum}/3";
 
-                    if (_errorNum == 3) //After 3 errors -> end game
+                    if (_errorNum == 3) // After 3 errors -> end game
                     {
                         var playAgain = await Shell.Current.DisplayAlert("Game Over", "Do you want to play again?", "Yes", "No");
 
@@ -114,6 +113,12 @@ namespace Sudoku.MVVM.ViewModels
                     });
                 }
             }
+        }
+
+        // Used from OnNavigatedTo method in Gamepage.xaml.cs
+        public void StartTimer()
+        {
+            _timer.Start();
         }
 
 

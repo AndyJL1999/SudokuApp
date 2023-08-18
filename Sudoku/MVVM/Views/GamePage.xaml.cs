@@ -11,4 +11,11 @@ public partial class GamePage : ContentPage
 
 		BindingContext = viewModel;
 	}
+
+	protected override void OnNavigatedTo(NavigatedToEventArgs args)
+	{
+		base.OnNavigatedTo(args);
+
+		((GamePageViewModel)BindingContext).StartTimer();
+	}
 }
