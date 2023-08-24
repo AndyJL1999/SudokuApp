@@ -1,4 +1,5 @@
 ﻿
+using Android.Bluetooth;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Sudoku.MVVM.Models;
@@ -20,23 +21,25 @@ namespace Sudoku.MVVM.ViewModels
         [ObservableProperty]
         private string _clock;
 
+        private const int _blankSpaces = 48;
+
         private Random _rnd;
-        private int _errorNum;
-        private int _clockNum;
         private Timer _timer;
+        private int _errorNum;
+        private int _successCounter;
+        private int _clockNum;
         private string _board;
 
         public GamePageViewModel()
         {
             _rnd = new Random();
             _timer = new Timer(1000);
-            _clockNum = 0;
+            _board = SudokuSolver.InitializeSudoku();
 
             ErrorCounter = "Mistakes: 0/3";
             NumberChoice = "123456789";
             Clock = "Time: 0:00";
 
-            _board = SudokuSolver.InitializeSudoku();
             SetBoard();
 
             _timer.Elapsed += (sender, e) => HandleTimer();
@@ -78,6 +81,8 @@ namespace Sudoku.MVVM.ViewModels
                 // else change cell to red and increment mistakes counter
                 if (_board[cellIndex].ToString() == chosenNumber.ToString())
                 {
+                    _successCounter++;
+
                     ChosenCell.CellColor = Colors.LimeGreen;
                     ChosenCell.IsInteractable = false;
                 }
@@ -94,19 +99,11 @@ namespace Sudoku.MVVM.ViewModels
 
                 if (_errorNum == 3) // After 3 errors -> end game
                 {
-                    _timer.Stop(); // Stop clock
-
-                    var playAgain = await Shell.Current.DisplayAlert("Game Over", "Do you want to play again?", "Yes", "No");
-
-                    if (playAgain == true)
-                    {
-                        SetBoard();
-                        ErrorCounter = $"Mistakes: {_errorNum}/3";
-                    }
-                    else
-                    {
-                        await GoToMain();
-                    }
+                    await CleanUp("Game Over");
+                }
+                else if (_successCounter == _blankSpaces) // Once all blanks are filled successfully -> we have a winner -> end game
+                {
+                    await CleanUp("WINNER!!!");
                 }
             }
         }
@@ -114,7 +111,10 @@ namespace Sudoku.MVVM.ViewModels
         private void SetBoard()
         {
             int[] blanksIndexes = GenerateBlanksIndexes(); // Get an array of random indexes ranging from 0 - 48
-            _errorNum = 0;
+
+            _clockNum = 0; // Used for timer
+            _errorNum = 0; // Used to track errors
+            _successCounter = 0; // Used to track correct selections
 
             for (int i = 0; i < _board.Length; i++)
             {
@@ -136,16 +136,16 @@ namespace Sudoku.MVVM.ViewModels
                         IsInteractable = false,
                         CellNumber = $"{_board[i]}"
                     });
-                }
-                
-                
+                } 
             }
+
+            StartTimer();
         }
 
         private int[] GenerateBlanksIndexes()
         {
             int randNum;
-            var blanks = new int[48]; // Defining an int array with a size of 48
+            var blanks = new int[_blankSpaces]; // Defining an int array with a size of 48
 
             for(int i = 0; i < blanks.Length; i++)
             {
@@ -160,9 +160,29 @@ namespace Sudoku.MVVM.ViewModels
             return blanks;
         }
 
-        // Used from OnNavigatedTo method in Gamepage.xaml.cs
-        public void StartTimer()
+        private async Task CleanUp(string outcome)
         {
+            _timer.Stop(); // Stop clock
+
+            var playAgain = await Shell.Current.DisplayAlert($"{outcome}", "Do you want to play again?", "Yes", "No");
+
+            if (playAgain == true)
+            {
+                SudokuPattern.Clear();
+
+                SetBoard();
+                ErrorCounter = $"Mistakes: {_errorNum}/3";
+            }
+            else
+            {
+                await GoToMain();
+            }
+        }
+
+        // Start timer with delay to make up for rendering delay in xaml page
+        private async void StartTimer()
+        {
+            await Task.Delay(500);
             _timer.Start();
         }
 
