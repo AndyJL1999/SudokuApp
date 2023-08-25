@@ -1,8 +1,8 @@
-﻿
-using Android.Bluetooth;
+﻿using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Sudoku.MVVM.Models;
+using Sudoku.MVVM.Views.PopUps;
 using System.Collections.ObjectModel;
 using Timer = System.Timers.Timer;
 
@@ -20,6 +20,10 @@ namespace Sudoku.MVVM.ViewModels
         private string _errorCounter;
         [ObservableProperty]
         private string _clock;
+        [ObservableProperty]
+        private string _result;
+        [ObservableProperty]
+        private bool _numberChoiceEnabled;
 
         private const int _blankSpaces = 48;
 
@@ -39,6 +43,7 @@ namespace Sudoku.MVVM.ViewModels
             ErrorCounter = "Mistakes: 0/3";
             NumberChoice = "123456789";
             Clock = "Time: 0:00";
+            NumberChoiceEnabled = true;
 
             SetBoard();
 
@@ -46,8 +51,16 @@ namespace Sudoku.MVVM.ViewModels
         }
 
         [RelayCommand]
-        private async Task GoToMain()
+        private async Task GoToMain(object popup = null)
         {
+            if (popup != null)
+            {
+                if (popup.GetType() == typeof(ResultPopUp))
+                {
+                    (popup as ResultPopUp).Close();
+                }
+            }
+            
             await Shell.Current.GoToAsync("..", true);
         }
 
@@ -79,16 +92,17 @@ namespace Sudoku.MVVM.ViewModels
                 // Get correct number from _board using cellIndex and see if it matches chosenNumber
                 // If true change cell to green and make it non-interactable
                 // else change cell to red and increment mistakes counter
-                if (_board[cellIndex].ToString() == chosenNumber.ToString())
+                if (_board[cellIndex].ToString() == chosenNumber.ToString() && ChosenCell.IsInteractable == true)
                 {
                     _successCounter++;
-
+                    Console.WriteLine(_successCounter);
                     ChosenCell.CellColor = Colors.LimeGreen;
                     ChosenCell.IsInteractable = false;
                 }
-                else
+                else if (_board[cellIndex].ToString() != chosenNumber.ToString() && ChosenCell.IsInteractable == true)
                 {
-                    _errorNum++;
+                    if(_errorNum != 3)
+                        _errorNum++;
 
                     ChosenCell.CellColor = Colors.Red;
                     ErrorCounter = $"Mistakes: {_errorNum}/3";
@@ -99,13 +113,26 @@ namespace Sudoku.MVVM.ViewModels
 
                 if (_errorNum == 3) // After 3 errors -> end game
                 {
-                    await CleanUp("Game Over");
+                    Result = "Game Over";
+                    await CleanUp();
                 }
                 else if (_successCounter == _blankSpaces) // Once all blanks are filled successfully -> we have a winner -> end game
                 {
-                    await CleanUp("WINNER!!!");
+                    Result = "WINNER!!!";
+                    await CleanUp();
                 }
             }
+        }
+
+        [RelayCommand]
+        public void Reset(ResultPopUp popup)
+        {
+            SudokuPattern.Clear();
+            SetBoard();
+            ErrorCounter = $"Mistakes: {_errorNum}/3";
+            NumberChoiceEnabled = true;
+
+            popup.Close();
         }
 
         private void SetBoard()
@@ -160,23 +187,18 @@ namespace Sudoku.MVVM.ViewModels
             return blanks;
         }
 
-        private async Task CleanUp(string outcome)
+        private async Task CleanUp()
         {
             _timer.Stop(); // Stop clock
 
-            var playAgain = await Shell.Current.DisplayAlert($"{outcome}", "Do you want to play again?", "Yes", "No");
-
-            if (playAgain == true)
+            if (NumberChoiceEnabled)
             {
-                SudokuPattern.Clear();
+                NumberChoiceEnabled = false;
 
-                SetBoard();
-                ErrorCounter = $"Mistakes: {_errorNum}/3";
+                var popup = new ResultPopUp(this);
+                Shell.Current.ShowPopup(popup);
             }
-            else
-            {
-                await GoToMain();
-            }
+            
         }
 
         // Start timer with delay to make up for rendering delay in xaml page

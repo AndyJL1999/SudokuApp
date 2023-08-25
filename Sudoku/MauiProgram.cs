@@ -1,4 +1,5 @@
-﻿using Sudoku.MVVM.ViewModels;
+﻿using CommunityToolkit.Maui;
+using Sudoku.MVVM.ViewModels;
 using Sudoku.MVVM.Views;
 
 namespace Sudoku;
@@ -10,6 +11,7 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
+			.UseMauiCommunityToolkit()
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

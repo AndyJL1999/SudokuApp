@@ -8,10 +8,6 @@
              BackgroundColor="CadetBlue">
 
     <Grid>
-        <Line BackgroundColor="Blue" WidthRequest="5" Margin="0,45,120,365" />
-        <Line BackgroundColor="Blue" WidthRequest="5" Margin="0,45,-120,365" />
-        <Line BackgroundColor="Blue" HeightRequest="5" Margin="5,0,5,200" />
-        <Line BackgroundColor="Blue" HeightRequest="5" Margin="5,0,5,440" />
 
         <VerticalStackLayout Margin="5,15" Spacing="10">
 
@@ -65,7 +61,8 @@
                     <DataTemplate>
                         <Label Text="{Binding}"
                                FontSize="35"
-                               Margin="5">
+                               Margin="5"
+                               IsEnabled="{Binding NumberChoiceEnabled}">
 
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding Path=CheckCellCommand,
@@ -84,6 +81,11 @@
                     Command="{Binding GoToMainCommand}"/>
 
         </VerticalStackLayout>
+
+        <Line BackgroundColor="Blue" WidthRequest="5" Margin="0,45,120,365" />
+        <Line BackgroundColor="Blue" WidthRequest="5" Margin="0,45,-120,365" />
+        <Line BackgroundColor="Blue" HeightRequest="5" Margin="5,0,5,200" />
+        <Line BackgroundColor="Blue" HeightRequest="5" Margin="5,0,5,440" />
     </Grid>
 
     

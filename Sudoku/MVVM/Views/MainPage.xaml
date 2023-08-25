@@ -5,12 +5,16 @@
              Shell.NavBarIsVisible="False"
              BackgroundColor="CadetBlue">
 
-    <Grid RowDefinitions=".2*,.8*">
+    <Grid RowDefinitions=".2*,.6*,.2*">
         <Label Text="SUDOKU" FontSize="75" FontAttributes="Bold"
                HorizontalOptions="CenterAndExpand"
                VerticalOptions="CenterAndExpand"/>
 
-        <Button Grid.Row="1"
+        <Image Grid.Row="1"
+               Margin="20"
+               Source="sudoku"/>
+
+        <Button Grid.Row="2"
                 Text="Play"
                 FontSize="Large"
                 FontAttributes="Bold"
