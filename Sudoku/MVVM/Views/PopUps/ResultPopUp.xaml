@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+           xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+           x:Class="Sudoku.MVVM.Views.PopUps.ResultPopUp"
+           CanBeDismissedByTappingOutsideOfPopup="False"
+           Size="275,215"
+           Color="Transparent">
+
+    <Grid VerticalOptions="FillAndExpand" RowDefinitions=".35*,.35*,.35*">
+        <RoundRectangle CornerRadius="20" Grid.RowSpan="3" Fill="CadetBlue"/>
+
+        <Label Text="{Binding Result}" HorizontalOptions="Center"
+               FontSize="Large" VerticalOptions="Start" Margin="0,10"/>
+
+        <VerticalStackLayout Grid.Row="1" HorizontalOptions="Center" Spacing="1">
+
+            <Label Text="{Binding Clock}" FontSize="Subtitle"
+                   HorizontalOptions="StartAndExpand" 
+                   VerticalOptions="CenterAndExpand"/>
+
+            <Label Text="{Binding ErrorCounter}" HorizontalOptions="StartAndExpand"
+                   FontSize="Subtitle" VerticalOptions="StartAndExpand"/>
+            
+        </VerticalStackLayout>
+
+        <StackLayout Orientation="Horizontal" Grid.Row="2" HorizontalOptions="Center">
+            <Button Text="Play Again" BackgroundColor="AliceBlue" CornerRadius="30" 
+                    WidthRequest="100" HeightRequest="45" Margin="10"
+                    HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="2"
+                    Command="{Binding ResetCommand}"
+                    CommandParameter="{Binding Source={RelativeSource AncestorType={x:Type mct:Popup}}, Path=.}"/>
+
+            <Button Text="Quit" BackgroundColor="Red" TextColor="AliceBlue" CornerRadius="30" 
+                    WidthRequest="100" HeightRequest="45" Margin="10"
+                    HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="2"
+                    Command="{Binding GoToMainCommand}"
+                    CommandParameter="{Binding Source={RelativeSource AncestorType={x:Type mct:Popup}}, Path=.}"/>
+        </StackLayout>
+
+        
+    </Grid>
+</mct:Popup>
