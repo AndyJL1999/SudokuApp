@@ -127,6 +127,8 @@ namespace Sudoku.MVVM.ViewModels
         [RelayCommand]
         public void Reset(ResultPopUp popup)
         {
+            _board = SudokuSolver.InitializeSudoku();
+
             SudokuPattern.Clear();
             SetBoard();
             ErrorCounter = $"Mistakes: {_errorNum}/3";

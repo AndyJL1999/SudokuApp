@@ -38,11 +38,34 @@ namespace Sudoku
                 { 0,0,0,0,0,0,0,0,0 },
             };
 
-            // Fill in a random cell with a random number
-            board[0, _rand.Next(9)] = _availableNumbers[_rand.Next(9)];
+            int[] firstRow = GenerateFirstRow();
+
+            // Fill in first row with random order of numbers
+            for(int i = 0; i < firstRow.Length; i++)
+            {
+                board[0, i] = firstRow[i];
+            }
 
             return board;
         }
+
+        private static int[] GenerateFirstRow()
+        {
+            List<int> row = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            int[] newRow = new int[9];
+
+            for(int i = 0; i < 9; i++)
+            {
+                int randNum = row[_rand.Next(row.Count)];
+                newRow[i] = randNum;
+
+                row.Remove(randNum);
+            }
+
+
+            return newRow;
+        }
+
 
         #region Credit to geeksforgeeks: https://www.geeksforgeeks.org/sudoku-backtracking-7/
 
